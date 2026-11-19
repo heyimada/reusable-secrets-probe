@@ -1,0 +1,12 @@
+on:
+  workflow_call:
+    secrets:
+      PROBE:
+        required: false
+jobs:
+  j:
+    runs-on: ubuntu-latest
+    environment: probe
+    steps:
+      - run: 'echo "declared: secret=${#S} var=$V"'
+        env: { S: "${{ secrets.PROBE }}", V: "${{ vars.PROBE_VAR }}" }
